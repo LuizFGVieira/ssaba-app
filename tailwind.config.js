@@ -9,7 +9,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#FFFFFF', // Defina a cor padrão do texto
+        background: '#111827', // Defina a cor padrão do background
+      },
+    },
   },
   plugins: [
     require('daisyui'),
