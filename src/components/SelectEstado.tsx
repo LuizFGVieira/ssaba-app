@@ -1,4 +1,4 @@
-import { EstadoService } from "@/services/estado";
+import { EstadoService } from "@/src/services/estado";
 import { ChangeEvent, useEffect, useState } from "react";
 
 interface SelectEstadoProps {

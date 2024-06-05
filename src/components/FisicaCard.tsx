@@ -1,6 +1,6 @@
-import { CidadeOut, CidadeService } from "@/services/cidade";
-import FisicaService, { FisicaOut } from "@/services/fisica";
-import { formataCPF, formataRG, formataTelefone } from "@/services/fisica/utils";
+import { CidadeOut, CidadeService } from "@/src/services/cidade";
+import FisicaService, { FisicaOut } from "@/src/services/fisica";
+import { formataCPF, formataRG, formataTelefone } from "@/src/services/fisica/utils";
 import React, { useEffect, useState } from "react";
 
 interface FisicaCardProps {

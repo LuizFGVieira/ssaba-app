@@ -23,7 +23,7 @@ export function formataRG(rg: string): string {
 }
 
 export function validaTamanhoRg(rg: string): boolean {
-    return rg.length === 12 ? true : false;
+    return rg.length === 9 ? true : false;
 }
 
 export function validaEmail(email: string): boolean {
