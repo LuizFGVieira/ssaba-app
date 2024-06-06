@@ -18,6 +18,7 @@ import SelectEstado from "../SelectEstado";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { ItensSaidaIn, SaidaService } from "@/src/services/saida";
 import { ProdutoService } from "@/src/services/produto";
+import { Loader } from "../Loader";
 
 const SaidaForm = () => {
   const [popAviso, setpopAviso] = useState(false);
@@ -73,19 +74,19 @@ const SaidaForm = () => {
     const newItensSaida = [...itensSaida];
     newItensSaida.splice(index, 1);
     setItensSaida(newItensSaida);
-  }
+  };
 
   const handleQuantidade = (value: any, index: number) => {
     const newItensSaida = [...itensSaida];
     newItensSaida[index].itens_sai_quantidade = value;
     setItensSaida(newItensSaida);
-  }
+  };
 
   const handleProduto = (value: any, index: number) => {
     const newItensSaida = [...itensSaida];
     newItensSaida[index].pro_id = value;
     setItensSaida(newItensSaida);
-  }
+  };
 
   const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -94,12 +95,13 @@ const SaidaForm = () => {
       pes_id: formData.pessoa,
       sai_observacao: formData.observacao,
       itensSaida: itensSaida,
-    })
+    });
     setIsLoading(false);
   };
 
   return (
     <>
+      <Loader show={isLoading} />
       <AvisoModal
         popAviso={popAviso}
         setpopAviso={setpopAviso}
@@ -118,14 +120,13 @@ const SaidaForm = () => {
             className="select select-bordered"
             id="pessoa"
           >
-            {!(pessoas.length > 0) && (
-              <option value="" selected>
-                Selecione uma pessoa
-              </option>
-            )}
+            <option value="0" selected>
+              Selecione uma pessoa
+            </option>
+
             {pessoas.map((pessoa) => {
               return (
-                <option key={pessoa.pes_nome} value={pessoa.pes_id}>
+                <option key={pessoa.pes_id} value={pessoa.pes_id}>
                   {pessoa.pes_nome}
                 </option>
               );
@@ -142,7 +143,6 @@ const SaidaForm = () => {
             value={formData.observacao}
             onChange={handleStringChange}
             className="input input-bordered"
-            required
           />
         </div>
         {itensSaida.map((item, index) => {
@@ -154,19 +154,17 @@ const SaidaForm = () => {
                 </label>
                 <select
                   onChange={(e) => handleProduto(e.target.value, index)}
-                  name="pessoa"
+                  name="produto"
                   value={itensSaida[index].pro_id}
                   className="select select-bordered"
-                  id="pessoa"
+                  id="produto"
                 >
-                  {!(produtos.length > 0) && (
-                    <option value="" selected>
-                      Selecione um produto
-                    </option>
-                  )}
+                  <option value="0" selected>
+                    Selecione um produto
+                  </option>
                   {produtos.map((produto) => {
                     return (
-                      <option key={produto.pro_nome} value={produto.pro_id}>
+                      <option key={produto.pro_id} value={produto.pro_id}>
                         {produto.pro_nome}
                       </option>
                     );
